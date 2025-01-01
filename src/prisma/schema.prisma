@@ -1,5 +1,5 @@
 datasource db {
-  provider = "mysql"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
@@ -10,10 +10,13 @@ generator client {
 model Product {
   id        Int      @id @default(autoincrement())
   name      String
-  category  String
-  area String
+  category  String   // we can use enum for some categories because they are limited, this will increase the performance.
+  area      String
   orders    OrderItem[]
   createdAt DateTime @default(now())
+
+  @@index([area])
+  @@index([category])
 }
 
 model Order {
