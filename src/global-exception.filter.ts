@@ -20,8 +20,9 @@ export class GlobalExceptionsFilter extends BaseExceptionFilter {
 
     const myResponseObj: MyResponseObj = {
       statusCode: exception.status || HttpStatus.INTERNAL_SERVER_ERROR,
-      message: exception.response.message.toString(),
-      error: exception.response.error || 'Internal Server Error',
+      message:
+        exception.response?.message.toString() || 'Internal Server Error',
+      error: exception.response?.error || 'Internal Server Error',
       timestamp: new Date().toISOString(),
       path: request.url,
     };

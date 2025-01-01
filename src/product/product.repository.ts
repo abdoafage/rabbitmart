@@ -14,6 +14,8 @@ export class ProductRepository {
   async findAll(filters: GetAllProductsDTO, page: number): Promise<Product[]> {
     const conditions = [];
 
+    // console.log(filters);
+
     if (filters?.categories && filters.categories.length > 0) {
       conditions.push({ category: { in: filters.categories } });
     }

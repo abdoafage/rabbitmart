@@ -23,7 +23,10 @@ export class ProductController {
   constructor(private readonly productsService: ProductService) {}
 
   @Get()
-  async getAllProducts(@Query(ValidationPipe) filters: GetAllProductsDTO) {
+  async getAllProducts(
+    @Query(new ValidationPipe({ transform: true })) filters: GetAllProductsDTO,
+  ) {
+    // console.log(filters);
     const products = await this.productsService.getAllProducts(filters);
     return products;
   }

@@ -69,3 +69,105 @@ yarn run seed
 yarn run build
 yarn run start:prod
 ```
+
+### Endpoints:
+
+Get all products example.
+
+```bash
+curl  -X GET \
+  'localhost:8080/products?page=1&categories=Product%20187%20Category' \
+  --header 'Accept: */*' \
+  --header 'User-Agent: Thunder Client (https://www.thunderclient.com)'
+```
+
+Get top ranked products.
+
+```bash
+curl  -X POST \
+  'localhost:8080/products/top-products' \
+  --header 'Accept: */*' \
+  --header 'User-Agent: Thunder Client (https://www.thunderclient.com)' \
+  --header 'Content-Type: application/json' \
+  --data-raw '{
+  "area":"Giza",
+  "count":10
+}'
+```
+
+Get single product.
+
+```bash
+curl  -X GET \
+  'localhost:8080/products/70002' \
+  --header 'Accept: */*' \
+  --header 'User-Agent: Thunder Client (https://www.thunderclient.com)'
+```
+
+Create new product.
+
+```bash
+curl  -X POST \
+  'localhost:8080/products' \
+  --header 'Accept: */*' \
+  --header 'User-Agent: Thunder Client (https://www.thunderclient.com)' \
+  --header 'Content-Type: application/json' \
+  --data-raw '{
+  "name":"milk",
+  "category":"drinks",
+  "area":"Maadi"
+}'
+```
+
+Delete product.
+
+```bash
+curl  -X DELETE \
+  'localhost:8080/products/70002' \
+  --header 'Accept: */*' \
+  --header 'User-Agent: Thunder Client (https://www.thunderclient.com)'
+```
+
+Update product data.
+
+```bash
+curl  -X PATCH \
+  'localhost:8080/products/70001' \
+  --header 'Accept: */*' \
+  --header 'User-Agent: Thunder Client (https://www.thunderclient.com)' \
+  --header 'Content-Type: application/json' \
+  --data-raw '{
+  "name":"milk70001",
+  "category":"drinks70001",
+  "area":"Maadi70001"
+}'
+```
+
+Create new Order.
+
+```bash
+curl  -X POST \
+  'localhost:8080/orders' \
+  --header 'Accept: */*' \
+  --header 'User-Agent: Thunder Client (https://www.thunderclient.com)' \
+  --header 'Content-Type: application/json' \
+  --data-raw '[
+  {
+    "quantity": 2,
+    "productId": 70000
+  },
+  {
+    "quantity": 2,
+    "productId": 70003
+  }
+]'
+```
+
+Get all Orders.
+
+```bash
+curl  -X GET \
+  'localhost:8080/orders' \
+  --header 'Accept: */*' \
+  --header 'User-Agent: Thunder Client (https://www.thunderclient.com)'
+```
